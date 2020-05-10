@@ -1,5 +1,7 @@
 import numpy as np
 import networkx as nx
+import tensorflow as tf
+
 
 class MVC_env:
     def __init__(self, number_nodes, p = 0.15, replay_penalty=0):
@@ -16,7 +18,13 @@ class MVC_env:
         self.nodes = list(self.graph.nodes)
         self.edges = list(self.graph.edges)
         self.state = np.zeros(self.number_nodes)
-        self.adjacency_matrix = nx.to_numpy_matrix(self.graph)
+       
+        adj_matrix = nx.to_numpy_matrix(self.graph)
+
+        nnz_indices = np.transpose(np.nonzero(adj_matrix))
+        nnz_vals = np.ones(len(nnz_indices)) 
+
+        self.adjacency_matrix = tf.sparse.SparseTensor( nnz_indices, nnz_vals, [self.number_nodes, self.number_nodes] )
         self.weight_matrix = self.adjacency_matrix
 
         if len(self.edges) == 0:

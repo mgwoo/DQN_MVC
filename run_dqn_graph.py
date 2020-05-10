@@ -10,7 +10,7 @@ import tensorflow.contrib.layers as layers
 import dqn_graph_model as dqn
 from dqn_utils import *
 from atari_wrappers import *
-from knapsack_env import *
+# from knapsack_env import *
 # import Q_function_graph_model
 import Q_function_graph_model2 as Q_function_graph_model
 import mvc_env

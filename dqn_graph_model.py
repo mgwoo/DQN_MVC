@@ -116,11 +116,16 @@ def learn(env,
     transition_length_ph = tf.placeholder(tf.float32, [None])
 
     # Graphs specific placeholder
-    adj_ph = tf.placeholder(tf.float32, [None, env.number_nodes, env.number_nodes],
-                            name='adj_ph')
-    graph_weights_ph = tf.placeholder(tf.float32,
-                                      [None, env.number_nodes, env.number_nodes],
-                                      name='graph_weights_ph')
+    #adj_ph = tf.placeholder(tf.float32, [None, env.number_nodes, env.number_nodes],
+    #                        name='adj_ph')
+    #graph_weights_ph = tf.placeholder(tf.float32,
+    #                                  [None, env.number_nodes, env.number_nodes],
+    #                                  name='graph_weights_ph')
+
+    adj_ph = tf.sparse_placeholder(tf.float32, shape=[None, env.number_nodes, env.number_nodes], name='adj_ph')
+    graph_weights_ph = tf.sparse_placeholder(tf.float32, shape=[None, env.number_nodes, env.number_nodes],  name='graph_weights_ph')
+
+
 
     q_func_net = q_func(x=obs_t_ph,
                         adj=adj_ph,

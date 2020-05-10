@@ -6,8 +6,10 @@ class ReplayBuffer:
     def __init__(self, size, obs_size, n_nodes):
         self.size = size
         self.obs = np.zeros([self.size, obs_size], dtype=np.float32)
-        self.adj = np.zeros([self.size, n_nodes, n_nodes], dtype=np.float32)
-        self.weight_matrix = np.zeros([self.size, n_nodes, n_nodes], dtype=np.float32)
+        #self.adj = np.zeros([self.size, n_nodes, n_nodes], dtype=np.float32)
+        self.adj = np.zeros([self.size], dtype=object)
+        #self.weight_matrix = np.zeros([self.size, n_nodes, n_nodes], dtype=np.float32)
+        self.weight_matrix = np.zeros([self.size], dtype=object)
         self.next_obs = np.zeros([self.size, obs_size], dtype=np.float32)
         self.actions = np.zeros([self.size], dtype=np.int32)
         self.rewards = np.zeros([self.size], dtype=np.float32)
