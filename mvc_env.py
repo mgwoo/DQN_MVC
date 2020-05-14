@@ -2,9 +2,8 @@ import numpy as np
 import networkx as nx
 
 class MVC_env:
-    def __init__(self, number_nodes, p = 0.15, replay_penalty=0):
+    def __init__(self, number_nodes, replay_penalty=0):
         self.number_nodes = number_nodes
-        self.p = p
         self.state_shape = [self.number_nodes]
         self.num_actions = self.number_nodes
         self.env_name = 'MVC'
@@ -12,7 +11,7 @@ class MVC_env:
 
     def reset(self):
         self.acc_reward = 0
-        self.graph = nx.erdos_renyi_graph(n = self.number_nodes, p = self.p)
+        self.graph = nx.erdos_renyi_graph(n = self.number_nodes, p = 0.15)
         self.nodes = list(self.graph.nodes)
         self.edges = list(self.graph.edges)
         self.state = np.zeros(self.number_nodes)
@@ -36,7 +35,7 @@ class MVC_env:
             self.state[action] = 1
             rew = -1
         else:
-            rew = -self.replay_penalty
+            rew = 0
 
         self.acc_reward += rew
 

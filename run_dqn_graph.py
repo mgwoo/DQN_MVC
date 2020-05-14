@@ -10,9 +10,7 @@ import tensorflow.contrib.layers as layers
 import dqn_graph_model as dqn
 from dqn_utils import *
 from atari_wrappers import *
-from knapsack_env import *
-# import Q_function_graph_model
-import Q_function_graph_model2 as Q_function_graph_model
+import Q_function
 import mvc_env
 
 
@@ -80,7 +78,7 @@ def main():
     env = mvc_env.MVC_env(7)
 
     graph_learn(env, num_timesteps=task.max_timesteps,
-                q_func=Q_function_graph_model.Q_func)
+                q_func=Q_function.Q_func)
 
 if __name__ == "__main__":
     main()
